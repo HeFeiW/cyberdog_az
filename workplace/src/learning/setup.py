@@ -23,7 +23,8 @@ setup(
             'stand = learning.stand:main',
             'distance = learning.distance:main',
             'walktest = learning.walktest:main',
-            'rgb_cam_suber = learning.rgb_cam_suber:main'
+            'rgb_cam_suber = learning.rgb_cam_suber:main',
+            'infra_cam_suber = learning.infra_cam_suber:main'
         ],
     },
 )
