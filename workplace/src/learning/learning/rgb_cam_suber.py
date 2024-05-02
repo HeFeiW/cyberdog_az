@@ -1,6 +1,7 @@
 #---get rgb image from stereo camera---#
 
 import rclpy
+import logging
 from rclpy.node import Node
 from sensor_msgs.msg import Image
 import cv2
@@ -21,11 +22,12 @@ class rgb_cam_suber(Node):
         rgb_msg = msg
         self.get_logger().info(f"the width is {rgb_msg.width}, the height is {rgb_msg.height}")
         cv_image = self.bridge.imgmsg_to_cv2(rgb_msg, "bgr8")
-        cv2.imwrite('/path/to/save/image.png', cv_image)
         self.get_logger().info(f"the image has been saved")
+        cv2.imshow("rgb_image", cv_image)
 
-        
+
 def main(args=None):
+    logging.info('hello')
     rclpy.init(args=args)
     node = rgb_cam_suber("rgb_cam_suber")
     rclpy.spin(node)
