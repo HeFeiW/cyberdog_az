@@ -1,1 +1,1 @@
-protocol:sensor_msgs
+geometry_msgs:protocol:sensor_msgs

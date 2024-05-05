@@ -1,7 +1,11 @@
 [console_scripts]
+crash = learning.crash:main
+data_reciv = learning.data_reciv:main
 distance = learning.distance:main
 infra_cam_suber = learning.infra_cam_suber:main
 rgb_cam_suber = learning.rgb_cam_suber:main
+rgb_test = learning.rgb_test:main
 stand = learning.stand:main
+track = learning.track:main
 walktest = learning.walktest:main
 

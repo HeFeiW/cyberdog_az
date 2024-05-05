@@ -14,6 +14,7 @@
   
   <depend>sensor_msgs</depend>
   <depend>protocol</depend>
+  <depend>geometry_msgs</depend>
 
   <export>
     <build_type>ament_python</build_type>

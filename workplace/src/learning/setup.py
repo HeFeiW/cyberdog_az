@@ -24,7 +24,11 @@ setup(
             'distance = learning.distance:main',
             'walktest = learning.walktest:main',
             'rgb_cam_suber = learning.rgb_cam_suber:main',
-            'infra_cam_suber = learning.infra_cam_suber:main'
+            'infra_cam_suber = learning.infra_cam_suber:main',
+            'rgb_test = learning.rgb_test:main',
+            'track = learning.track:main',
+            'crash = learning.crash:main',
+            'data_reciv = learning.data_reciv:main',
         ],
     },
 )

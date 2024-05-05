@@ -22,8 +22,10 @@ class rgb_cam_suber(Node):
         rgb_msg = msg
         self.get_logger().info(f"the width is {rgb_msg.width}, the height is {rgb_msg.height}")
         cv_image = self.bridge.imgmsg_to_cv2(rgb_msg, "bgr8")
+        cv2.imwrite('rgb_image.jpg', cv_image)
         self.get_logger().info(f"the image has been saved")
         cv2.imshow("rgb_image", cv_image)
+        cv2.waitKey(1)
 
 
 def main(args=None):

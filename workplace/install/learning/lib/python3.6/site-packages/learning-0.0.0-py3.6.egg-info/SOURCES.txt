@@ -10,11 +10,16 @@ setup.py
 ../../build/learning/learning.egg-info/zip-safe
 learning/__init__.py
 learning/ball_recog.py
+learning/crash.py
+learning/data_reciv.py
 learning/distance.py
 learning/infra_cam_suber.py
 learning/rgb_cam_suber.py
+learning/rgb_test.py
 learning/sensor.py
 learning/stand.py
+learning/track.py
+learning/transverse.py
 learning/walktest.py
 resource/learning
 test/test_copyright.py

@@ -37,7 +37,7 @@ class basic_move(Node):
             self.get_logger().info(f"距离小于90cm，the distance is {self.sensor_node.dist}")
         if self.sensor_node.dist is not None and self.sensor_node.dist >= 0.9:
             # 如果距离大于90cm，则走
-            self.speed_x, self.speed_y, self.speed_z = 0.3, 0.0, 0.0
+            self.speed_x, self.speed_y, self.speed_z = 0.1, 0.0, 0.0
             self.get_logger().info(f"距离大于90，the distance is {self.sensor_node.dist}")
         msg = MotionServoCmd()
         msg.motion_id = 308
