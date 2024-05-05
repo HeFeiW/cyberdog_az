@@ -21,6 +21,7 @@ setup(
     entry_points={
         'console_scripts': [
             'stand = learning.stand:main',
+            'sit = learning.sit:main',
             'distance = learning.distance:main',
             'walktest = learning.walktest:main',
             'rgb_cam_suber = learning.rgb_cam_suber:main',
@@ -29,6 +30,9 @@ setup(
             'track = learning.track:main',
             'crash = learning.crash:main',
             'data_reciv = learning.data_reciv:main',
+            'walk_t_sec = learning.walk_t_sec:main',
+            'test = learning.test:main',
+            'rotate = learning.rotate:main'
         ],
     },
 )

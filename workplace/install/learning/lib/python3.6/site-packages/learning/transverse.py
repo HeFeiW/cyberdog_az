@@ -30,6 +30,6 @@ def transverse(num,v):
     rclpy.init()
     move_node = transverse("transverse", num,v)
     for i in range(num):
-    rclpy.spin_once(move_node)
+        rclpy.spin_once(move_node)
     move_node.destroy_node()
     rclpy.shutdown()

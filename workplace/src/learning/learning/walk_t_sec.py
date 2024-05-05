@@ -44,7 +44,6 @@ class StopNode(Node):
         msg.step_height = [0.05,0.05]
         self.pub.publish(msg)
 def move_t_sec(t,mode):
-    rclpy.init()
     move_node = MoveNode("move_node",mode)
     stop_node = StopNode("stop_node")
     move_thread = threading.Thread(target=rclpy.spin, args=(move_node,))

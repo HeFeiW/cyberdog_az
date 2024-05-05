@@ -16,10 +16,15 @@ learning/distance.py
 learning/infra_cam_suber.py
 learning/rgb_cam_suber.py
 learning/rgb_test.py
+learning/rotate.py
+learning/routine.py
 learning/sensor.py
+learning/sit.py
 learning/stand.py
+learning/test.py
 learning/track.py
 learning/transverse.py
+learning/walk_t_sec.py
 learning/walktest.py
 resource/learning
 test/test_copyright.py

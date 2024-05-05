@@ -57,7 +57,7 @@ def aim(x,y) -> int:
     if x > 320:
         print("aim right")
         flag=1
-    if x > 410-5 & x < 410+5:
+    if x > 410-5 and x < 410+5:
         flag=0
     return flag
 
