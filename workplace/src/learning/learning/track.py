@@ -1,3 +1,10 @@
+'''
+suber:'/image_rgb',
+filter color GREEN,
+find the largest contour, x, y, radius,
+calculate the size of the ball,
+show image and contour.
+'''
 import cv2
 import numpy as np
 from cv_bridge import CvBridge
@@ -41,8 +48,8 @@ class rgb_cam_suber(Node):
             # Calculate the size of the ball
             size = cv2.contourArea(largest_contour)
             print(f"The size of the ball is: {size}, position ({x},{y})")
-            if aim(x,y)!=0:
-                pass
+            # if aim(x,y)!=0:
+            #     pass
             # Draw the circle and centroid on the frame,
             cv2.circle(cv_image, (int(x), int(y)), int(radius), (0, 255, 255), 2)
 

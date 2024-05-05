@@ -1,0 +1,53 @@
+[4.902s] Invoking command in '/home/mi/workplace/src/learning': PYTHONPATH=/home/mi/workplace/install/learning/lib/python3.6/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../build/learning build --build-base /home/mi/workplace/build/learning/build install --prefix /home/mi/workplace/install/learning --record /home/mi/workplace/build/learning/install.log --single-version-externally-managed
+[6.576s] running egg_info
+[6.578s] writing ../../build/learning/learning.egg-info/PKG-INFO
+[6.579s] writing dependency_links to ../../build/learning/learning.egg-info/dependency_links.txt
+[6.582s] writing entry points to ../../build/learning/learning.egg-info/entry_points.txt
+[6.582s] writing requirements to ../../build/learning/learning.egg-info/requires.txt
+[6.583s] writing top-level names to ../../build/learning/learning.egg-info/top_level.txt
+[6.604s] reading manifest file '../../build/learning/learning.egg-info/SOURCES.txt'
+[6.618s] writing manifest file '../../build/learning/learning.egg-info/SOURCES.txt'
+[6.619s] running build
+[6.619s] running build_py
+[6.624s] copying learning/walk_onesec.py -> /home/mi/workplace/build/learning/build/lib/learning
+[6.624s] copying learning/rotate.py -> /home/mi/workplace/build/learning/build/lib/learning
+[6.626s] running install
+[6.627s] /usr/local/lib/python3.6/dist-packages/setuptools/command/install.py:37: SetuptoolsDeprecationWarning: setup.py install is deprecated. Use build and pip and other standards-based tools.
+[6.627s]   setuptools.SetuptoolsDeprecationWarning,
+[6.630s] running install_lib
+[6.638s] copying /home/mi/workplace/build/learning/build/lib/learning/walk_onesec.py -> /home/mi/workplace/install/learning/lib/python3.6/site-packages/learning
+[6.640s] copying /home/mi/workplace/build/learning/build/lib/learning/rotate.py -> /home/mi/workplace/install/learning/lib/python3.6/site-packages/learning
+[6.645s] byte-compiling /home/mi/workplace/install/learning/lib/python3.6/site-packages/learning/ztest.py to ztest.cpython-36.pyc
+[6.649s]   File "/home/mi/workplace/install/learning/lib/python3.6/site-packages/learning/ztest.py", line 81
+[6.649s]     excpt KeyboardInterrupt:
+[6.649s]         ^
+[6.650s] SyntaxError: invalid syntax
+[6.650s] 
+[6.654s] byte-compiling /home/mi/workplace/install/learning/lib/python3.6/site-packages/learning/point.py to point.cpython-36.pyc
+[6.655s] byte-compiling /home/mi/workplace/install/learning/lib/python3.6/site-packages/learning/walk_onesec.py to walk_onesec.cpython-36.pyc
+[6.656s]   File "/home/mi/workplace/install/learning/lib/python3.6/site-packages/learning/point.py", line 18
+[6.656s]     
+[6.657s]     ^
+[6.657s] SyntaxError: unexpected EOF while parsing
+[6.658s] 
+[6.661s] byte-compiling /home/mi/workplace/install/learning/lib/python3.6/site-packages/learning/rotate.py to rotate.cpython-36.pyc
+[6.665s] running install_data
+[6.673s] running install_egg_info
+[6.677s] removing '/home/mi/workplace/install/learning/lib/python3.6/site-packages/learning-0.0.0-py3.6.egg-info' (and everything under it)
+[6.678s] Copying ../../build/learning/learning.egg-info to /home/mi/workplace/install/learning/lib/python3.6/site-packages/learning-0.0.0-py3.6.egg-info
+[6.683s] running install_scripts
+[6.791s] Installing crash script to /home/mi/workplace/install/learning/lib/learning
+[6.792s] Installing data_reciv script to /home/mi/workplace/install/learning/lib/learning
+[6.793s] Installing distance script to /home/mi/workplace/install/learning/lib/learning
+[6.797s] Installing infra_cam_suber script to /home/mi/workplace/install/learning/lib/learning
+[6.797s] Installing rgb_cam_suber script to /home/mi/workplace/install/learning/lib/learning
+[6.800s] Installing rgb_test script to /home/mi/workplace/install/learning/lib/learning
+[6.800s] Installing rotate script to /home/mi/workplace/install/learning/lib/learning
+[6.801s] Installing see_and_crash script to /home/mi/workplace/install/learning/lib/learning
+[6.805s] Installing sit script to /home/mi/workplace/install/learning/lib/learning
+[6.807s] Installing stand script to /home/mi/workplace/install/learning/lib/learning
+[6.807s] Installing track script to /home/mi/workplace/install/learning/lib/learning
+[6.808s] Installing walk_onesec script to /home/mi/workplace/install/learning/lib/learning
+[6.808s] Installing walktest script to /home/mi/workplace/install/learning/lib/learning
+[6.809s] writing list of installed files to '/home/mi/workplace/build/learning/install.log'
+[6.940s] Invoked command in '/home/mi/workplace/src/learning' returned '0': PYTHONPATH=/home/mi/workplace/install/learning/lib/python3.6/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../build/learning build --build-base /home/mi/workplace/build/learning/build install --prefix /home/mi/workplace/install/learning --record /home/mi/workplace/build/learning/install.log --single-version-externally-managed

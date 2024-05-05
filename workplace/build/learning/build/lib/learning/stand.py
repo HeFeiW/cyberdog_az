@@ -1,3 +1,7 @@
+'''
+stand up
+'''
+
 import rclpy
 from rclpy.node import Node
 from protocol.srv import MotionResultCmd

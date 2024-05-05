@@ -1,6 +1,7 @@
 import rclpy
 from rclpy.node import Node
 from std_msgs.msg import String
+# useless
 class MyNodePublisher(Node):
     def __init__(self):
         super().__init__('ultrasonic_pub')

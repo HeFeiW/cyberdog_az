@@ -24,7 +24,10 @@ def get_dog_target_position(ball_coords, goal_coords):
     # 计算直线的截距
     intercept = goal_coords[1] - slope * goal_coords[0]
     # 计算机器狗的目标位置
-    dog_target_x = ball_coords[0] + 1  # 这里假设机器狗应该移动到球的右边1个单位
+    if ball_coords[0] < 0:
+        dog_target_x = ball_coords[0] - 1  # 这里假设机器狗应该移动到球的右边1个单位
+    else:
+        dog_target_x = ball_coords[0] + 1
     dog_target_y = slope * dog_target_x + intercept
     return dog_target_x, dog_target_y
 

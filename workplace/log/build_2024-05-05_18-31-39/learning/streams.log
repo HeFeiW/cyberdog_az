@@ -1,0 +1,72 @@
+[4.562s] Invoking command in '/home/mi/workplace/src/learning': PYTHONPATH=/home/mi/workplace/install/learning/lib/python3.6/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../build/learning build --build-base /home/mi/workplace/build/learning/build install --prefix /home/mi/workplace/install/learning --record /home/mi/workplace/build/learning/install.log --single-version-externally-managed
+[6.393s] running egg_info
+[6.400s] writing ../../build/learning/learning.egg-info/PKG-INFO
+[6.401s] writing dependency_links to ../../build/learning/learning.egg-info/dependency_links.txt
+[6.401s] writing entry points to ../../build/learning/learning.egg-info/entry_points.txt
+[6.402s] writing requirements to ../../build/learning/learning.egg-info/requires.txt
+[6.402s] writing top-level names to ../../build/learning/learning.egg-info/top_level.txt
+[6.428s] reading manifest file '../../build/learning/learning.egg-info/SOURCES.txt'
+[6.437s] writing manifest file '../../build/learning/learning.egg-info/SOURCES.txt'
+[6.446s] running build
+[6.451s] running build_py
+[6.454s] copying learning/data_reciv.py -> /home/mi/workplace/build/learning/build/lib/learning
+[6.455s] copying learning/point.py -> /home/mi/workplace/build/learning/build/lib/learning
+[6.455s] copying learning/main.py -> /home/mi/workplace/build/learning/build/lib/learning
+[6.456s] copying learning/transverse.py -> /home/mi/workplace/build/learning/build/lib/learning
+[6.457s] copying learning/walktest.py -> /home/mi/workplace/build/learning/build/lib/learning
+[6.457s] copying learning/sensor.py -> /home/mi/workplace/build/learning/build/lib/learning
+[6.459s] copying learning/camera.py -> /home/mi/workplace/build/learning/build/lib/learning
+[6.460s] copying learning/walk_onesec.py -> /home/mi/workplace/build/learning/build/lib/learning
+[6.460s] copying learning/stand.py -> /home/mi/workplace/build/learning/build/lib/learning
+[6.461s] copying learning/track.py -> /home/mi/workplace/build/learning/build/lib/learning
+[6.461s] copying learning/rotate.py -> /home/mi/workplace/build/learning/build/lib/learning
+[6.462s] running install
+[6.462s] running install_lib
+[6.463s] /usr/local/lib/python3.6/dist-packages/setuptools/command/install.py:37: SetuptoolsDeprecationWarning: setup.py install is deprecated. Use build and pip and other standards-based tools.
+[6.465s]   setuptools.SetuptoolsDeprecationWarning,
+[6.466s] copying /home/mi/workplace/build/learning/build/lib/learning/data_reciv.py -> /home/mi/workplace/install/learning/lib/python3.6/site-packages/learning
+[6.467s] copying /home/mi/workplace/build/learning/build/lib/learning/point.py -> /home/mi/workplace/install/learning/lib/python3.6/site-packages/learning
+[6.468s] copying /home/mi/workplace/build/learning/build/lib/learning/main.py -> /home/mi/workplace/install/learning/lib/python3.6/site-packages/learning
+[6.468s] copying /home/mi/workplace/build/learning/build/lib/learning/transverse.py -> /home/mi/workplace/install/learning/lib/python3.6/site-packages/learning
+[6.469s] copying /home/mi/workplace/build/learning/build/lib/learning/walktest.py -> /home/mi/workplace/install/learning/lib/python3.6/site-packages/learning
+[6.470s] copying /home/mi/workplace/build/learning/build/lib/learning/sensor.py -> /home/mi/workplace/install/learning/lib/python3.6/site-packages/learning
+[6.470s] copying /home/mi/workplace/build/learning/build/lib/learning/camera.py -> /home/mi/workplace/install/learning/lib/python3.6/site-packages/learning
+[6.471s] copying /home/mi/workplace/build/learning/build/lib/learning/walk_onesec.py -> /home/mi/workplace/install/learning/lib/python3.6/site-packages/learning
+[6.471s] copying /home/mi/workplace/build/learning/build/lib/learning/stand.py -> /home/mi/workplace/install/learning/lib/python3.6/site-packages/learning
+[6.472s] copying /home/mi/workplace/build/learning/build/lib/learning/track.py -> /home/mi/workplace/install/learning/lib/python3.6/site-packages/learning
+[6.472s] copying /home/mi/workplace/build/learning/build/lib/learning/rotate.py -> /home/mi/workplace/install/learning/lib/python3.6/site-packages/learning
+[6.473s] byte-compiling /home/mi/workplace/install/learning/lib/python3.6/site-packages/learning/ztest.py to ztest.cpython-36.pyc
+[6.476s]   File "/home/mi/workplace/install/learning/lib/python3.6/site-packages/learning/ztest.py", line 81
+[6.476s]     excpt KeyboardInterrupt:
+[6.477s]         ^
+[6.477s] SyntaxError: invalid syntax
+[6.478s] 
+[6.485s] byte-compiling /home/mi/workplace/install/learning/lib/python3.6/site-packages/learning/data_reciv.py to data_reciv.cpython-36.pyc
+[6.486s] byte-compiling /home/mi/workplace/install/learning/lib/python3.6/site-packages/learning/point.py to point.cpython-36.pyc
+[6.487s] byte-compiling /home/mi/workplace/install/learning/lib/python3.6/site-packages/learning/main.py to main.cpython-36.pyc
+[6.487s] byte-compiling /home/mi/workplace/install/learning/lib/python3.6/site-packages/learning/transverse.py to transverse.cpython-36.pyc
+[6.489s] byte-compiling /home/mi/workplace/install/learning/lib/python3.6/site-packages/learning/walktest.py to walktest.cpython-36.pyc
+[6.490s] byte-compiling /home/mi/workplace/install/learning/lib/python3.6/site-packages/learning/sensor.py to sensor.cpython-36.pyc
+[6.492s] byte-compiling /home/mi/workplace/install/learning/lib/python3.6/site-packages/learning/camera.py to camera.cpython-36.pyc
+[6.493s] byte-compiling /home/mi/workplace/install/learning/lib/python3.6/site-packages/learning/walk_onesec.py to walk_onesec.cpython-36.pyc
+[6.494s] byte-compiling /home/mi/workplace/install/learning/lib/python3.6/site-packages/learning/stand.py to stand.cpython-36.pyc
+[6.495s] byte-compiling /home/mi/workplace/install/learning/lib/python3.6/site-packages/learning/track.py to track.cpython-36.pyc
+[6.504s] byte-compiling /home/mi/workplace/install/learning/lib/python3.6/site-packages/learning/rotate.py to rotate.cpython-36.pyc
+[6.505s] running install_data
+[6.508s] running install_egg_info
+[6.522s] removing '/home/mi/workplace/install/learning/lib/python3.6/site-packages/learning-0.0.0-py3.6.egg-info' (and everything under it)
+[6.523s] Copying ../../build/learning/learning.egg-info to /home/mi/workplace/install/learning/lib/python3.6/site-packages/learning-0.0.0-py3.6.egg-info
+[6.535s] running install_scripts
+[6.638s] Installing crash script to /home/mi/workplace/install/learning/lib/learning
+[6.640s] Installing data_reciv script to /home/mi/workplace/install/learning/lib/learning
+[6.641s] Installing distance script to /home/mi/workplace/install/learning/lib/learning
+[6.642s] Installing infra_cam_suber script to /home/mi/workplace/install/learning/lib/learning
+[6.642s] Installing rgb_cam_suber script to /home/mi/workplace/install/learning/lib/learning
+[6.643s] Installing rgb_test script to /home/mi/workplace/install/learning/lib/learning
+[6.651s] Installing rotate script to /home/mi/workplace/install/learning/lib/learning
+[6.651s] Installing see_and_crash script to /home/mi/workplace/install/learning/lib/learning
+[6.652s] Installing stand script to /home/mi/workplace/install/learning/lib/learning
+[6.653s] Installing track script to /home/mi/workplace/install/learning/lib/learning
+[6.653s] Installing walktest script to /home/mi/workplace/install/learning/lib/learning
+[6.654s] writing list of installed files to '/home/mi/workplace/build/learning/install.log'
+[6.786s] Invoked command in '/home/mi/workplace/src/learning' returned '0': PYTHONPATH=/home/mi/workplace/install/learning/lib/python3.6/site-packages:${PYTHONPATH} /usr/bin/python3 setup.py egg_info --egg-base ../../build/learning build --build-base /home/mi/workplace/build/learning/build install --prefix /home/mi/workplace/install/learning --record /home/mi/workplace/build/learning/install.log --single-version-externally-managed

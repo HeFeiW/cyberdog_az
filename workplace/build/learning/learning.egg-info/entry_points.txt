@@ -5,7 +5,11 @@ distance = learning.distance:main
 infra_cam_suber = learning.infra_cam_suber:main
 rgb_cam_suber = learning.rgb_cam_suber:main
 rgb_test = learning.rgb_test:main
+rotate = learning.rotate:main
+see_and_crash = learning.see_and_crash:main
+sit = learning.sit:main
 stand = learning.stand:main
 track = learning.track:main
+walk_onesec = learning.walk_onesec:main
 walktest = learning.walktest:main
 

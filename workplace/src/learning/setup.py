@@ -29,6 +29,10 @@ setup(
             'track = learning.track:main',
             'crash = learning.crash:main',
             'data_reciv = learning.data_reciv:main',
+            'rotate = learning.rotate:main',
+            'see_and_crash = learning.see_and_crash:main',
+            'sit = learning.sit:main',
+            'walk_onesec = learning.walk_onesec:main',
         ],
     },
 )

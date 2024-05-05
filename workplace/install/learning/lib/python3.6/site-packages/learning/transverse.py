@@ -1,3 +1,7 @@
+'''
+move to the side,
+input:number of steps(num),velocity(v)
+'''
 import rclpy
 from rclpy.node import Node
 from sensor_msgs.msg import Range
@@ -27,9 +31,9 @@ class transverse(Node):
         self.get_logger().info(f"transverse,count={self.count},speed_y={self.speed_y}.")
 
 def transverse(num,v):
-    rclpy.init()
+    rclpy.init(args=None)
     move_node = transverse("transverse", num,v)
     for i in range(num):
-    rclpy.spin_once(move_node)
+        rclpy.spin_once(move_node)
     move_node.destroy_node()
     rclpy.shutdown()
