@@ -93,14 +93,31 @@ class rotate(Node):
         self.pub.publish(msg)
         self.get_logger().info(f"x={ball_x},arr={self.x_rec}rotate={self.speed_z}")
 
+class StopNode(Node):
+    def __init__(self, name):
+        super().__init__(name)
+        self.speed_x, self.speed_y, self.speed_z = 0.0, 0.0, 0.0
+        self.dog_name = "az"
+        self.pub = self.create_publisher(MotionServoCmd, f"/{self.dog_name}/motion_servo_cmd", 10)
+        self.timer = self.create_timer(0.1, self.timer_callback)
+
+    def timer_callback(self):
+        msg = MotionServoCmd()
+        msg.motion_id = 308
+        msg.cmd_type = 1
+        msg.value = 2
+        msg.vel_des = [self.speed_x, self.speed_y, self.speed_z]
+        msg.step_height = [0.05,0.05]
+        self.pub.publish(msg)
    
 
 
 
 def rotate_aim_ball(mode=0):
-    rclpy.init(args=args)
+    rclpy.init(args=None)
     rgb_node = rgb_cam_suber("rgb_cam_suber")
     rotate_node = rotate("rotate_node", rgb_node)
+    stop_node = StopNode("stop_node")
     rotate_thread = threading.Thread(target=rclpy.spin, args=(rotate_node,))
     rotate_thread.start()
     if mode == 0:
@@ -112,8 +129,12 @@ def rotate_aim_ball(mode=0):
                 pass
         except KeyboardInterrupt:
             print('KeyBoardInterrupt')
+    stop_thread = threading.Thread(target=rclpy.spin, args=(stop_node,))
+    stop_thread.start()
+    time.sleep(0.1)
     rotate_node.destroy_node()
     rgb_node.destroy_node()
+    stop_node.destroy_node()
     rclpy.shutdown()
     cv2.destroyAllWindows()
     return True
