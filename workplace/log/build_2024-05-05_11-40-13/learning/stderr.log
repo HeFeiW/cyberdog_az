@@ -1,8 +1,0 @@
-/usr/local/lib/python3.6/dist-packages/setuptools/command/install.py:37: SetuptoolsDeprecationWarning: setup.py install is deprecated. Use build and pip and other standards-based tools.
-  setuptools.SetuptoolsDeprecationWarning,
-  File "/home/mi/workplace/install/learning/lib/python3.6/site-packages/learning/ztest.py", line 81
-    excpt KeyboardInterrupt:
-        ^
-SyntaxError: invalid syntax
-
-Sorry: IndentationError: expected an indented block (transverse.py, line 33)
