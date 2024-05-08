@@ -1,13 +1,17 @@
 [console_scripts]
 crash = learning.crash:main
+data_receive = learning.data_receive:main
 data_reciv = learning.data_reciv:main
 distance = learning.distance:main
+goal = learning.goal:main
 infra_cam_suber = learning.infra_cam_suber:main
 rgb_cam_suber = learning.rgb_cam_suber:main
 rgb_test = learning.rgb_test:main
 rotate = learning.rotate:main
+routine = learning.routine:main
 sit = learning.sit:main
 stand = learning.stand:main
+striker = learning.striker:main
 test = learning.test:main
 track = learning.track:main
 walk_t_sec = learning.walk_t_sec:main

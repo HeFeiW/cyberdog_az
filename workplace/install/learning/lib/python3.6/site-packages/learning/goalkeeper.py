@@ -1,6 +1,6 @@
 '''
-让狗转，直到球处于视野中心（实现方法：让绿球x坐标位于260-400间）
-跟随球出视野方向旋转，
+让狗平移，直到球处于视野中心（实现方法：让绿球x坐标位于260-400间）
+跟随球出视野方向平移，
 函数rotate_aim_ball(mode=0)，
 mode=0：球处于中心，停止，返回True
 mode=1:持续动态跟随，直到KeyBoardInterrupt，返回True
@@ -73,16 +73,16 @@ class rotate(Node):
         if size < 100:
             av=sum(self.x_rec)/len(self.x_rec)
             if  av < 320:
-                self.speed_x, self.speed_y, self.speed_z = 0.0, 0.0, 0.7
+                self.speed_x, self.speed_y, self.speed_z = 0.0, 1.0, 0.0
             else:
-                self.speed_x, self.speed_y, self.speed_z = 0.0, 0.0, -0.7
+                self.speed_x, self.speed_y, self.speed_z = 0.0, -1.0, 0.0
         elif ball_x > 260 and ball_x < 400:
-            self.speed_z = 0.0
+            self.speed_y = 0.0
             self.aim = True
         elif ball_x <= 260:
-            self.speed_x, self.speed_y, self.speed_z = 0.0, 0.0, 0.2
+            self.speed_x, self.speed_y, self.speed_z = 0.0, 0.5, 0.0
         else:
-            self.speed_x, self.speed_y, self.speed_z = 0.0, 0.0, -0.2
+            self.speed_x, self.speed_y, self.speed_z = 0.0, -0.5, 0.0
 
         msg = MotionServoCmd()
         msg.motion_id = 308

@@ -1,6 +1,10 @@
 import math
 
 def get_goal_coords(ball_coords,dog_coords,gate_coords,dist):
+    # 如果球和球门的x坐标相差小于0.01，设置目标坐标为（横坐标：球的横坐标，纵坐标：球的纵坐标+1）
+    if abs(gate_coords[0] - ball_coords[0]) < 0.01:
+        return (ball_coords[0], ball_coords[1] + 1)
+
     # 计算球门和球之间的直线斜率
     slope = (gate_coords[1] - ball_coords[1]) / (gate_coords[0] - ball_coords[0])
     # p是便于计算最终坐标的系数
@@ -22,7 +26,7 @@ def get_routine(ball_coords,dog_coords,goal_coords):
     d_g=(goal_coords[0]-dog_coords[0])**2+(goal_coords[1]-dog_coords[1])**2
     cos_theta=(b_d+d_g-b_g)/(2*math.sqrt(b_d)*math.sqrt(d_g))
     theta=math.acos(cos_theta)
-    if dog_coords[0]>ball_coords[0]:
+    if goal_coords[0]<ball_coords[0]:
         theta=theta
     else:
         theta=-1*theta

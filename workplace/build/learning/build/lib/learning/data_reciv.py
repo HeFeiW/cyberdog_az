@@ -18,16 +18,6 @@ def parse_data(data):
     # 返回两个坐标
     return (a, b), (c, d)
 
-def get_dog_target_position(ball_coords, goal_coords):
-    # 计算球门和球之间的直线斜率
-    slope = (goal_coords[1] - ball_coords[1]) / (goal_coords[0] - ball_coords[0])
-    # 计算直线的截距
-    intercept = goal_coords[1] - slope * goal_coords[0]
-    # 计算机器狗的目标位置
-    dog_target_x = ball_coords[0] + 1  # 这里假设机器狗应该移动到球的右边1个单位
-    dog_target_y = slope * dog_target_x + intercept
-    return dog_target_x, dog_target_y
-
 def main():
     ip = '10.0.0.143' # 查看上位机ip，进行修改
     client_socket = socket.socket()

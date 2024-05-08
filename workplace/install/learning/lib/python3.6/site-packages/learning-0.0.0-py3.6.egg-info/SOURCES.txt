@@ -11,9 +11,14 @@ setup.py
 learning/__init__.py
 learning/ball_recog.py
 learning/crash.py
+learning/data_receive.py
 learning/data_reciv.py
 learning/distance.py
+learning/get_data.py
+learning/goal.py
+learning/goalkeeper.py
 learning/infra_cam_suber.py
+learning/main.py
 learning/rgb_cam_suber.py
 learning/rgb_test.py
 learning/rotate.py
@@ -21,6 +26,7 @@ learning/routine.py
 learning/sensor.py
 learning/sit.py
 learning/stand.py
+learning/striker.py
 learning/test.py
 learning/track.py
 learning/transverse.py
