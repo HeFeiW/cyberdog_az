@@ -81,7 +81,7 @@
     + ros2 service call /stereo_camera/change_state lifecycle_msgs/srv/ChangeState "{transition: {id: 3}}"
 4. 连接Xming
     + export DISPLAY=10.0.0.184:0.0
-        + xhost +
+    + xhost +
 ### 运动参数
 飞扑距离
 x==410,y==378,area==31450
