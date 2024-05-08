@@ -9,8 +9,8 @@ from protocol.msg import MotionServoCmd
 import threading
 import time
 
-def make_goal():
-    move_t_sec(1,0,-0.3)
-    move_t_sec(3,0,1.0)
+def make_goal(dist):
+    move_t_sec(1.5,0,-0.5)
+    move_t_sec(dist,0,1.0)
 def main(args=None):
     make_goal()
