@@ -19,9 +19,9 @@ def main():
     gate_coords=[0.1,7.9]
     ball_coords,dog_coords = get_dog_address()
     print(ball_coords,dog_coords)
-    goal_coords=get_goal_coords(ball_coords,dog_coords,gate_coords,dist)
+    goal_coords,right=get_goal_coords(ball_coords,dog_coords,gate_coords,dist)
     print(goal_coords[0],goal_coords[1])
-    theta,goDist=get_routine(ball_coords,dog_coords,goal_coords)
+    theta,goDist=get_routine(ball_coords,dog_coords,goal_coords,right)
     print(theta,goDist)
     if theta < 0:
         theta = abs(theta)
@@ -30,6 +30,6 @@ def main():
         move_t_sec(theta/0.5,2,0.5)
     move_t_sec(goDist/0.5,0,0.5)
     rotate_aim_ball()
-    make_goal(dist+1)
+    make_goal(dist+2.5)
 if __name__ == "__main__": 
     main()
