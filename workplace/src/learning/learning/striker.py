@@ -1,3 +1,6 @@
+'''
+0511版 添加了很屑的修正因子
+'''
 import rclpy
 from rclpy.node import Node
 from sensor_msgs.msg import Range
@@ -16,7 +19,7 @@ from .routine import get_routine
 def main():
     rotate_aim_ball()
     dist=2.5
-    gate_coords=[0.0,7.9]
+    gate_coords=[0.0,8.2]
     ball_coords,dog_coords = get_dog_address()
     print(ball_coords,dog_coords)
     goal_coords,right=get_goal_coords(ball_coords,dog_coords,gate_coords,dist)
