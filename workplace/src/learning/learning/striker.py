@@ -23,13 +23,15 @@ def main():
     print(goal_coords[0],goal_coords[1])
     theta,goDist=get_routine(ball_coords,dog_coords,goal_coords,right)
     print(theta,goDist)
+    ok=0
     if theta < 0:
         theta = abs(theta)
-        move_t_sec(theta/0.5,2,-0.5)
+        ok=move_t_sec(theta/0.5,2,-0.5)
     else:
-        move_t_sec(theta/0.5,2,0.5)
-    move_t_sec(goDist/0.5,0,0.5)
+        ok=move_t_sec(theta/0.5,2,0.5)
+    if (ok):
+        move_t_sec(goDist/0.5,0,0.5)
     rotate_aim_ball()
-    make_goal(dist+2.5)
+    make_goal(dist+1.5)
 if __name__ == "__main__": 
     main()

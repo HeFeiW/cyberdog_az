@@ -60,10 +60,13 @@ def move_t_sec(t,mode,speed):
     move_node.destroy_node()
     stop_node.destroy_node()
     rclpy.shutdown()
-    # return True
+    return True
 def main(args=None):
-    
-    move_t_sec(12.564,2,0.5)
+    ok = 0
+    ok = move_t_sec(3,2,0.5)
+    if(ok):
+        print("ok")
+        move_t_sec(3,0,0.5)
     
 
 if __name__ == "__main__":

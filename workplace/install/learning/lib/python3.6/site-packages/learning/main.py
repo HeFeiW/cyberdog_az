@@ -1,3 +1,9 @@
+'''
+> main.py
+> author: whf
+> date: 2024-5-11
+> draft of main function for striker
+'''
 import rclpy
 from rclpy.node import Node
 from sensor_msgs.msg import Range
@@ -8,15 +14,14 @@ import time
 import rotate
 from walk_t_sec import move_t_sec
 import routine
-
+from get_loc import LocReciv
 
 
 def main(args=None):
     rclpy.init(args=args)
-    sensor_node = sensor_suber("my_sensor")
-    move_node = basic_move("move_node", sensor_node)
-    rclpy.spin_once(sensor_node)
-    rclpy.spin(move_node)
-    move_node.destroy_node()
-    sensor_node.destroy_node()
-    rclpy.shutdown()
+    prefer_dirc = 1 # preferred direction for rotation, 1 for right, -1 for left
+
+    loc_receiv = LocReciv()
+    loc_receiv.start_in_thread()
+
+    
