@@ -21,12 +21,13 @@ class StopNode(Node):
 
     def timer_callback(self):
         msg = MotionServoCmd()
-        msg.motion_id = 0
+        msg.motion_id = 303
         msg.cmd_type = 1
         msg.value = 2
         msg.vel_des = [self.speed_x, self.speed_y, self.speed_z]
         msg.step_height = [0.05,0.05]
         self.pub.publish(msg)
+
 
 def stop():
     rclpy.init(args=None)

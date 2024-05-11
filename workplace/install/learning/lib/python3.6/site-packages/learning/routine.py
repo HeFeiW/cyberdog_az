@@ -6,7 +6,7 @@ def get_goal_coords(ball_coords,dog_coords,gate_coords,dist):
     if abs(gate_coords[0] - ball_coords[0]) < 0.05:
         if(dog_coords[0] < gate_coords[0]):
             right = 1
-        return (ball_coords[0], ball_coords[1] + dist), right
+        return (ball_coords[0]+0.1, ball_coords[1] - dist), right
 
     # 计算球门和球之间的直线斜率
     slope = (gate_coords[1] - ball_coords[1]) / (gate_coords[0] - ball_coords[0])

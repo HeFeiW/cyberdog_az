@@ -26,7 +26,10 @@ class rotate(Node):
         self.dog_name = "az"
         self.pub = self.create_publisher(MotionServoCmd, f"/{self.dog_name}/motion_servo_cmd", 10)
         self.timer = self.create_timer(0.1, self.timer_callback)
-        self.x_rec=[.0,.0,.0,.0,.0]
+        if (1 == left):
+            self.x_rec=[.0,.0,.0,.0,.0]
+        else :
+            self.x_rec=[640.,640.,640.,640.,640.]
         self.aim = False
         self.prefer_direc = left # 1 for left, -1 for right
 

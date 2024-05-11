@@ -7,10 +7,12 @@ from rclpy.node import Node
 from protocol.msg import MotionServoCmd
 import threading
 import time
+from .stop_node import StopNode
 
 class MoveNode(Node):
     def __init__(self, name,mode,speed):
         super().__init__(name)
+        self.motion_id = 305
         self.speed_x, self.speed_y, self.speed_z = 0.0, 0.0, 0.0
         if mode == 0:
             self.speed_x = speed
@@ -18,35 +20,21 @@ class MoveNode(Node):
             self.speed_y = speed
         elif mode == 2:
             self.speed_z = speed
+            self.motion_id = 303
         self.dog_name = "az"
         self.pub = self.create_publisher(MotionServoCmd, f"/{self.dog_name}/motion_servo_cmd", 10)
         self.timer = self.create_timer(0.1, self.timer_callback)
 
     def timer_callback(self):
         msg = MotionServoCmd()
-        msg.motion_id = 305
+        msg.motion_id = self.motion_id
         msg.cmd_type = 1
         msg.value = 2
         msg.vel_des = [self.speed_x, self.speed_y, self.speed_z]
         msg.step_height = [0.05,0.05]
         self.pub.publish(msg)
 
-class StopNode(Node):
-    def __init__(self, name):
-        super().__init__(name)
-        self.speed_x, self.speed_y, self.speed_z = 0.0, 0.0, 0.0
-        self.dog_name = "az"
-        self.pub = self.create_publisher(MotionServoCmd, f"/{self.dog_name}/motion_servo_cmd", 10)
-        self.timer = self.create_timer(0.1, self.timer_callback)
 
-    def timer_callback(self):
-        msg = MotionServoCmd()
-        msg.motion_id = 308
-        msg.cmd_type = 1
-        msg.value = 2
-        msg.vel_des = [self.speed_x, self.speed_y, self.speed_z]
-        msg.step_height = [0.05,0.05]
-        self.pub.publish(msg)
 def move_t_sec(t,mode,speed):
     rclpy.init(args=None)
     move_node = MoveNode("move_node",mode,speed)
@@ -63,10 +51,13 @@ def move_t_sec(t,mode,speed):
     return True
 def main(args=None):
     ok = 0
-    ok = move_t_sec(3,2,0.5)
+    ok = move_t_sec(1.14597405796519/0.5,2,0.5)
     if(ok):
         print("ok")
-        move_t_sec(3,0,0.5)
+        ok = move_t_sec(1.14597405796519/0.5,2,-0.5)
+    if(ok):
+        print("ok")
+        ok = move_t_sec(1.14597405796519/0.5,2,0.5)
     
 
 if __name__ == "__main__":
