@@ -48,10 +48,10 @@ class rotate(Node):
                 self.speed_x, self.speed_y, self.speed_z = 0.0, 0.0, 0.5
             else:
                 self.speed_x, self.speed_y, self.speed_z = 0.0, 0.0, -0.5
-        elif ball_x > 260 and ball_x < 380:
+        elif ball_x > 245 and ball_x < 400:
             self.speed_z = 0.0
             self.aim = True
-        elif ball_x <= 260:
+        elif ball_x <= 245:
             self.speed_x, self.speed_y, self.speed_z = 0.0, 0.0, 0.25
         else:
             self.speed_x, self.speed_y, self.speed_z = 0.0, 0.0, -0.25

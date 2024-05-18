@@ -19,14 +19,15 @@ from .routine import get_routine
 def main():
     rotate_aim_ball()
     dist=2.5
-    gate_coords=[0.0,8.2]
+    gate_coords=[0.1,8.3]
     ball_coords,dog_coords = get_dog_address()
     print(ball_coords,dog_coords)
     goal_coords,right=get_goal_coords(ball_coords,dog_coords,gate_coords,dist)
     print(goal_coords[0],goal_coords[1])
     theta,goDist=get_routine(ball_coords,dog_coords,goal_coords,right)
+    print(theta,goDist)
     theta = theta * 1.1 #修正因子
-    goDist = goDist * 0.95
+    goDist = goDist * 0.9
     ok=0
     left =0
     if theta < 0:
