@@ -19,6 +19,7 @@ class rgb_cam_suber(Node):
         rgb_msg = msg
         # self.get_logger().info(f"the width is {rgb_msg.width}, the height is {rgb_msg.height}")
         cv_image = self.bridge.imgmsg_to_cv2(rgb_msg, "bgr8")
+        print(f"The width of the image is: {cv_image.shape[1]}, the height is: {cv_image.shape[0]}")
 
         # Convert BGR to HSV
         hsv = cv2.cvtColor(cv_image, cv2.COLOR_BGR2HSV)

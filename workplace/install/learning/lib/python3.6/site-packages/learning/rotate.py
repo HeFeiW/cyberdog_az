@@ -4,6 +4,10 @@
 函数rotate_aim_ball(mode=0)，
 mode=0：球处于中心，停止，返回True
 mode=1:持续动态跟随，直到KeyBoardInterrupt，返回True
+
+0519 lx
+为了方便记录角度，将速度同一改为0.25
+修改了rotate_aim_ball return转了多少度
 '''
 import cv2
 import numpy as np
@@ -32,6 +36,7 @@ class rotate(Node):
             self.x_rec=[640.,640.,640.,640.,640.]
         self.aim = False
         self.prefer_direc = left # 1 for left, -1 for right
+        self.total_rotation = 0.0  # 新增属性来跟踪累积的角度
 
     def timer_callback(self):
         rclpy.spin_once(self.rgb_node)
@@ -48,14 +53,14 @@ class rotate(Node):
                 self.speed_x, self.speed_y, self.speed_z = 0.0, 0.0, 0.5
             else:
                 self.speed_x, self.speed_y, self.speed_z = 0.0, 0.0, -0.5
-        elif ball_x > 245 and ball_x < 400:
+        elif ball_x > 400 and ball_x < 450:
             self.speed_z = 0.0
             self.aim = True
-        elif ball_x <= 245:
+        elif ball_x <= 400:
             self.speed_x, self.speed_y, self.speed_z = 0.0, 0.0, 0.25
         else:
             self.speed_x, self.speed_y, self.speed_z = 0.0, 0.0, -0.25
-
+        self.total_rotation += self.speed_z * 0.1  # 更新累积的角度，注意这里的0.1是时间间隔
         msg = MotionServoCmd()
         msg.motion_id = 308
         msg.cmd_type = 1
@@ -89,7 +94,8 @@ def rotate_aim_ball(mode=0,left=1):
     stop_node.destroy_node()
     rclpy.shutdown()
     cv2.destroyAllWindows()
-    return True
+    print(f"转过的角度={rotate_node.total_rotation}")
+    return rotate_node.total_rotation  # 返回累积的角度
 
 def main(args=None):
     print(rotate_aim_ball())

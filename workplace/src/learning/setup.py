@@ -37,7 +37,8 @@ setup(
             'striker = learning.striker:main',
             'goal = learning.goal:main',
             'routine = learning.routine:main',
-            'moveto = learning.move_to_target:main'
+            'moveto = learning.move_to_target:main',
+            'shoot = learning.shoot:main'
         ],
     },
 )

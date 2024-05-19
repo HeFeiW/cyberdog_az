@@ -98,7 +98,6 @@ def move_to(goal_address,socket):
     stop_thread.start()
     time.sleep(0.1)
     stop_node.destroy_node()
-
     moveto_node.destroy_node()
     rclpy.shutdown()
     return True
