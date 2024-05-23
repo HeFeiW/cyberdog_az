@@ -53,10 +53,10 @@ class rotate(Node):
                 self.speed_x, self.speed_y, self.speed_z = 0.0, 0.0, 0.5
             else:
                 self.speed_x, self.speed_y, self.speed_z = 0.0, 0.0, -0.5
-        elif ball_x > 400 and ball_x < 450:
+        elif ball_x > 360 and ball_x < 420:
             self.speed_z = 0.0
             self.aim = True
-        elif ball_x <= 400:
+        elif ball_x <= 360:
             self.speed_x, self.speed_y, self.speed_z = 0.0, 0.0, 0.25
         else:
             self.speed_x, self.speed_y, self.speed_z = 0.0, 0.0, -0.25
@@ -71,7 +71,7 @@ class rotate(Node):
         self.get_logger().info(f"x={ball_x},arr={self.x_rec}rotate={self.speed_z}")
 
 def rotate_aim_ball(mode=0,left=1):
-    rclpy.init(args=None)
+    # rclpy.init(args=None)
     rgb_node = rgb_cam_suber("rgb_cam_suber")
     rotate_node = rotate("rotate_node", rgb_node,left)
     stop_node = StopNode("stop_node")
@@ -92,7 +92,7 @@ def rotate_aim_ball(mode=0,left=1):
     rotate_node.destroy_node()
     rgb_node.destroy_node()
     stop_node.destroy_node()
-    rclpy.shutdown()
+    # rclpy.shutdown()
     cv2.destroyAllWindows()
     print(f"转过的角度={rotate_node.total_rotation}")
     return rotate_node.total_rotation  # 返回累积的角度

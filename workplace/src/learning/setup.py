@@ -31,14 +31,14 @@ setup(
             'crash = learning.crash:main',
             'data_reciv = learning.data_reciv:main',
             'walk_t_sec = learning.walk_t_sec:main',
-            'test = learning.test:main',
             'rotate = learning.rotate:main',
             'data_receive = learning.data_receive:main',
             'striker = learning.striker:main',
             'goal = learning.goal:main',
             'routine = learning.routine:main',
             'moveto = learning.move_to_target:main',
-            'shoot = learning.shoot:main'
+            'shoot = learning.shoot:main',
+            'test=learning.move_node:main'
         ],
     },
 )

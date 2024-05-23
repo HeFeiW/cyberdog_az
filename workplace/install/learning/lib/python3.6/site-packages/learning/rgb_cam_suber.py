@@ -1,5 +1,6 @@
 #---get rgb image from stereo camera---#
 '''
+> author: all
 > rgb_cam_suber.py
 > define a class rgb_cam_suber(Node)
  with attributes:

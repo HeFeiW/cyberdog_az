@@ -11,11 +11,12 @@ from protocol.msg import MotionServoCmd
 import rclpy
 import threading
 import time
+from rclpy.executors import SingleThreadedExecutor
 
 class MoveNode(Node):
     def __init__(self, name, mode, speed, duration):
         super().__init__(name)
-        self.motion_id = 305
+        self.motion_id = 303
         self.speed_x, self.speed_y, self.speed_z = 0.0, 0.0, 0.0
         if mode == 0:
             self.speed_x = speed
@@ -42,31 +43,38 @@ class MoveNode(Node):
             msg.step_height = [0.05, 0.05]
             self.pub.publish(msg)
         else:
-            # 走够了，停下
             self.time_enough = True
-            msg = MotionServoCmd()
-            msg.motion_id = self.motion_id
-            msg.cmd_type = 1
-            msg.value = 2
-            msg.vel_des = [0.0, 0.0, 0.0]
-            msg.step_height = [0.05, 0.05]
-            self.pub.publish(msg)
-            self.time_enough = True
-
+    def stop_moving(self):
+        # 停止移动的函数
+        msg = MotionServoCmd()
+        msg.motion_id = self.motion_id
+        msg.cmd_type = 1
+        msg.value = 2
+        msg.vel_des = [0.0, 0.0, 0.0]
+        msg.step_height = [0.05, 0.05]
+        self.pub.publish(msg)
 def move_t_sec(t, mode, speed):
     rclpy.init(args=None)
-    move_node = MoveNode("move_node",mode,speed,t)
-    move_thread = threading.Thread(target=rclpy.spin, args=(move_node,))
-    move_thread.start()
-    while not move_node.time_enough:
-        pass
-    move_node.destroy_node()
-    rclpy.shutdown()
-    return True
-def main(args=None):
-    move_t_sec(1.14597405796519, 0, 0.5)
-    move_t_sec(1.14597405796519, 0, -0.5)
+    move_node = MoveNode("move_node", mode, speed, t)
+    executor = SingleThreadedExecutor()
+    executor.add_node(move_node)
 
+    try:
+        while rclpy.ok():
+            executor.spin_once()
+            if move_node.time_enough:
+                move_node.stop_moving()
+                break
+    finally:
+        move_node.destroy_node()
+        rclpy.shutdown()
+    return True
+
+def main(args=None):
+    print("start")
+    move_t_sec(1.14597405796519, 0, 0.5)
+    move_t_sec(1.14597405796519, 1, -0.5)
+    move_t_sec(1.14597405796519, 2, -0.3)
 
 if __name__ == "__main__":
     main()
