@@ -20,24 +20,24 @@ import threading
 import time
 from .get_data import Location
 from .stop_node import StopNode
-from .rotate import rotate_aim_ball
-from .rgb_cam_suber import rgb_cam_suber
+from .rgb_cam_suber import RGBCamSuber
+from .constants import C
 
 class Move(Node):
-    def __init__(self,name,location:Location,GATE,DIST):
-        super().__init__(name)
-        self.motion_id = 303
+    def __init__(self,location):
+        super().__init__("move_node")
+        self.motion_id = 305
         self.speed_x, self.speed_y, self.speed_z = 0.0, 0.0, 0.0
-        self.dog_name = "az"
+        self.dog_name = C.NAME
         self.pub = self.create_publisher(MotionServoCmd, f"/{self.dog_name}/motion_servo_cmd", 1)
         self.arrived=False
-        self.max_speed_x = 0.65
-        self.max_speed_y = 0.3
-        self.max_speed_z = 1.25
-        self.GATE = GATE
-        self.DIST = DIST
+        self.max_speed_x = 0.55
+        self.max_speed_y = 1.6
+        self.max_speed_z = 2.5
+        self.GATE = C.GATE
+        self.DIST = C.DIST
         self.location = location
-    def goto(self,target,frequency = 0.3):
+    def goto(self,target,frequency = C.FREQUENCY):
         '''
         goto(self,target:target_coords)
         go to point [target] at max speed.
@@ -45,12 +45,12 @@ class Move(Node):
         '''
         print(f'going to{target}')
         while not self.location.in_place(target):
-            my_loc = self.location.black_dog   #   TODO red dog should chang tihs line
-            v =self.max_vel(target,my_loc)
+            v =self.max_vel(target,self.location.my_loc())
             vel = [v[0],v[1],.0]
             self.go(vel)
             time.sleep(frequency)
-        print(f'targeting {target}, arrived at {self.location.black_dog}') 
+            print(f'goto() targeting {target}') 
+        print(f'targeting {target}, arrived at {self.location.red_dog}') 
         return True
     def go_for(self,duration,vel):
         '''
@@ -69,18 +69,13 @@ class Move(Node):
         #   一直走。用while循环加订阅话题跳出
         return True
 
-    def stop(self,vel=[.0,.0,.0],motion_id = 303):
+    def stop(self,vel=[.0,.0,.0],motion_id = 305):
         '''
         stop the robot
         '''
-        msg = MotionServoCmd()
-        msg.motion_id =motion_id
-        msg.cmd_type = 1
-        msg.value = 2
-        msg.vel_des = vel
-        msg.step_height = [0.05,0.05]
-        self.pub.publish(msg)
-    def go(self,vel,motion_id = 303):
+        self.go([.0,.0,.0])
+        return
+    def go(self,vel,motion_id = 305):
         '''
         一个比较方便的生成并发送cmd封装，输入vel三元列表即可
         '''
@@ -88,11 +83,28 @@ class Move(Node):
         msg.motion_id =motion_id
         msg.cmd_type = 1
         msg.value = 2
-        msg.vel_des = vel
+        msg.vel_des = [vel[1],-vel[0],vel[2]]
+        print(f'vel:{msg.vel_des}')
         msg.step_height = [0.05,0.05]
         self.pub.publish(msg)
+    def max_vel(self,target,me):
+        '''
+        max_vel(self,target:target_coords,me: my_coords)
+        return the max velocity pointing from me to target.
+        '''
+        vector = [.0,.0]
+        dir = [1,1]
+        vector[0]=target[0]-me[0]
+        vector[1]=target[1]-me[1]
+        dir = [vector[0]/abs(vector[0]),vector[1]/abs(vector[1])]
+        vel_x = abs(self.max_speed_y * vector[0] / vector[1])
+        if vel_x <= self.max_speed_x:
+            vel = [dir[0] * vel_x,dir[1] * self.max_speed_y]
+        else:
+            vel = [dir[0] * self.max_speed_x , dir[1] * abs(self.max_speed_x * vector[1] / vector[0])]
+        return vel 
     def rotate_aim_ball(self,mode=0,left=1):
-        self.rgb_node = rgb_cam_suber("rgb_cam_suber")
+        self.rgb_node = RGBCamSuber("rgb_cam_suber")
         if (1 == left):
             self.x_rec=[.0,.0,.0,.0,.0]
         else :
@@ -124,17 +136,10 @@ class Move(Node):
             else:
                 self.speed_x, self.speed_y, self.speed_z = 0.0, 0.0, -0.25
             self.total_rotation += self.speed_z * 0.1  # 更新累积的角度，注意这里的0.1是时间间隔
-            msg = MotionServoCmd()
-            msg.motion_id = 308
-            msg.cmd_type = 1
-            msg.value = 2
-            msg.vel_des = [self.speed_x, self.speed_y, self.speed_z]
-            msg.step_height = [0.05, 0.05]
-            self.pub.publish(msg)
+            self.go([self.speed_x,self.speed_y,self.speed_z])
             self.get_logger().info(f"x={ball_x},arr={self.x_rec}rotate={self.speed_z}")
             time.sleep(0.1)    
         return self.total_rotation
-            
     def shoot(self,mode=0,redundancy = 0.5):
         '''
         shooting
@@ -147,41 +152,24 @@ class Move(Node):
         go [redundancy] meters further
         '''
         if mode == 0:
-            duration = (self.DIST + redundancy)/self.max_speed_x
-            self.go_for(duration,[self.max_speed_x,.0,.0])
+            duration = (self.DIST + redundancy)/self.max_speed_y
+            self.go_for(duration,[.0,self.max_speed_y,.0])
         elif mode == 1:
-            ball_loc,me_loc = self.location.ball,self.location.red_dog
+            ball_loc,me_loc = self.location.ball,self.location.my_loc()
             if(me_loc[0] - ball_loc[0] < 0):
-                left = -1
-            else:
                 left = 1
-            rotation=self.rotate_aim_ball(0,left)*1.1 #请别吐槽。。
-            duration = (self.DIST + redundancy)/self.max_speed_x
-            self.go_for(duration,[self.max_speed_x,.0,.0])
+            else:
+                left = -1
+            rotation=self.rotate_aim_ball(0,left) 
+            duration = (self.DIST + redundancy)/self.max_speed_y
+            self.go_for(duration,[.0,self.max_speed_y,.0])
             if rotation>0:
                 self.go_for(rotation/0.5,[.0,.0,-0.5])
             else:
                 rotation = abs(rotation)
                 self.go_for(rotation/0.5,[.0,.0,0.5])
         elif mode == 2:
-            pass
-        
-
-    def max_vel(self,target,me):
-        '''
-        max_vel(self,target:target_coords,me: my_coords)
-        return the max velocity pointing from me to target.
-        '''
-        vector = [.0,.0]
-        vector[0]=target[0]-me[0]
-        vector[1]=target[1]-me[1]
-        vel_y = self.max_speed_x * vector[1] / vector[0]
-        if vel_y <= self.max_speed_y:
-            vel = [self.max_speed_x,self.max_speed_x * vector[1] / vector[0]]
-        else:
-            vel = [self.max_speed_y * vector[0] / vector[1],self.max_speed_y]
-        return vel 
-    
+            pass        
 def dist(point1, point2):
         distance = math.sqrt((point2[0]-point1[0])**2 + (point2[1]-point1[1])**2)
         return distance
@@ -190,7 +178,7 @@ def main():
     location = Location()  # Assuming Location is initialized without parameters
     GATE = [8.8,-0.2]
     DIST = 2.5
-    move_node = Move("move_node", location, GATE, DIST)
+    move_node = Move(location)
     # Test go_for method
     move_node.shoot(1)
     # duration = 6.28  # Duration in seconds

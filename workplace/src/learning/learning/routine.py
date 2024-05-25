@@ -1,7 +1,14 @@
+'''
+>   author: wmy whf lx
+>   edit date:2024-05-22
+>   get_goal_coords:
+        add an parameter 'mode' to return shoot mode
+'''
 import math
+from .constants import C
 def get_goal_coords(ball_coords,dog_coords,gate_coords,dist):
     right = 0
-    
+    shoot_mode = 0
     # 如果球和球门的x坐标相差小于0.05，设置目标坐标为（横坐标：球的横坐标，纵坐标：球的纵坐标+dist）
     # if abs(gate_coords[0] - ball_coords[0]) < 0.05:
     #     if(dog_coords[0] < gate_coords[0]):
@@ -18,13 +25,30 @@ def get_goal_coords(ball_coords,dog_coords,gate_coords,dist):
         p=1
     dist_y=dist*(p*slope/math.sqrt(1+slope*slope))
     dist_x=dist*(p/math.sqrt(1+slope*slope))
-    goal_coords=(ball_coords[0]+dist_x,ball_coords[1]+dist_y)
+    goal_coords=[ball_coords[0]+dist_x , ball_coords[1]+dist_y]
     intersection_x=(dog_coords[1]-intercept)/slope
     if intersection_x>ball_coords[0]:
         right = -1
     else:
         right = 1
-    return goal_coords,right
+    if gate_coords[0]-1<ball_coords[0]<gate_coords[0]+1: #球在门框范围内
+        shoot_mode=0
+        goal_coords[0]=ball_coords[0]-0.1
+        if C.COLOR == 0: #红狗
+            goal_coords[1]=ball_coords[1]-dist
+        else:
+            goal_coords[1]=ball_coords[1]+dist
+    else: #球在门框外
+        shoot_mode = 1
+        if (goal_coords[0]<gate_coords[0]-1.8) or (goal_coords[0]>gate_coords[0]+1.8) or (goal_coords[1]>8.0) or (goal_coords[1]<2.3):
+            #如果位置不合法，到球正后方踢球
+            shoot_mode = 0
+            goal_coords[0]=ball_coords[0]-0.1
+            if C.COLOR == 0: #红狗
+                goal_coords[1]=ball_coords[1]-dist
+            else:
+                goal_coords[1]=ball_coords[1]+dist
+    return goal_coords,right,shoot_mode
 
 def get_routine(ball_coords,dog_coords,goal_coords,right):
     #dis(dog,ball)^2

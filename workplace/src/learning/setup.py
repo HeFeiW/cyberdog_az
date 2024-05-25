@@ -38,7 +38,8 @@ setup(
             'routine = learning.routine:main',
             'moveto = learning.move_to_target:main',
             'shoot = learning.shoot:main',
-            'test=learning.move_node:main'
+            'test=learning.move_node:main',
+            'main = learning.main_node:main'
         ],
     },
 )

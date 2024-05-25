@@ -1,16 +1,16 @@
 #---get rgb image from stereo camera---#
 '''
-> author: all
-> rgb_cam_suber.py
-> define a class rgb_cam_suber(Node)
- with attributes:
-    - bridge: CvBridge
-    - sub: subscription to '/image_rgb'
-    - frame_count: int
-    - size: int
-    - ball_position: tuple (float)
-    - contour: list of numpy arrays, each array is a contour of the green area in image
-    - size: the area of the biggest green area (when area < 100, assume that there's no green object in view, and ball position is set (0,0))
+>   author: all
+>   rgb_cam_suber.py
+>   define a class rgb_cam_suber(Node)
+    with attributes:
+        - bridge: CvBridge
+        - sub: subscription to '/image_rgb'
+        - frame_count: int
+        - size: int
+        - ball_position: tuple (float)
+        - contour: list of numpy arrays, each array is a contour of the green area in image
+        - size: the area of the biggest green area (when area < 100, assume that there's no green object in view, and ball position is set (0,0))
 
 '''
 
@@ -20,7 +20,7 @@ from cv_bridge import CvBridge
 from rclpy.node import Node
 from sensor_msgs.msg import Image
 
-class rgb_cam_suber(Node):
+class RGBCamSuber(Node):
     '''subscribe the message of stereo camera'''
     def __init__(self, name) -> None:
         super().__init__(name)
