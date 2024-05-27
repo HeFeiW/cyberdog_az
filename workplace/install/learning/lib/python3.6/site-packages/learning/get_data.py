@@ -78,7 +78,6 @@ class Location():
             self.black_dog = black_dog
             self.black_dog_loc_rec.pop(0)
             self.black_dog_loc_rec.append([timestamp] + list(self.black_dog))
-        self.NotOut(self.black_dog)   #TODO change for red dog
         return self.ball, self.red_dog, self.black_dog
     def in_place(self,target,error = C.ERROR):
         self.get_data()
@@ -154,6 +153,18 @@ class Location():
     def dist(self,point1, point2):
         distance = math.sqrt((point2[0]-point1[0])**2 + (point2[1]-point1[1])**2)
         return distance
+    def isLeft(self):
+        self.get_data()
+        if self.color == 1:#black
+            if self.black_dog[0] - self.ball[0] > 0:
+                return 1
+            else:
+                return -1
+        if self.color == 0:#red
+            if self.red_dog[0] - self.ball[0] < 0:
+                return 1
+            else:
+                return -1
     def close(self):
         self.client_socket.close()
         print('socket connection closed.')

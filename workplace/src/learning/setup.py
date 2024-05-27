@@ -39,7 +39,8 @@ setup(
             'moveto = learning.move_to_target:main',
             'shoot = learning.shoot:main',
             'test=learning.move_node:main',
-            'main = learning.main_node:main'
+            'main = learning.main_node:main',
+            'angle = learning.angle:main'
         ],
     },
 )

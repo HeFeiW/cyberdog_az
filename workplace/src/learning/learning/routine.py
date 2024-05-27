@@ -9,13 +9,6 @@ from .constants import C
 def get_goal_coords(ball_coords,dog_coords,gate_coords,dist):
     right = 0
     shoot_mode = 0
-    # 如果球和球门的x坐标相差小于0.05，设置目标坐标为（横坐标：球的横坐标，纵坐标：球的纵坐标+dist）
-    # if abs(gate_coords[0] - ball_coords[0]) < 0.05:
-    #     if(dog_coords[0] < gate_coords[0]):
-    #         right = 1
-    #     return (ball_coords[0]+0.1, ball_coords[1] - dist), right
-
-    # 计算球门和球之间的直线斜率
     slope = (gate_coords[1] - ball_coords[1]) / (gate_coords[0] - ball_coords[0])
     intercept = ((gate_coords[1] - slope * gate_coords[0])+ball_coords[1]-slope*ball_coords[0])/2
     # p是便于计算最终坐标的系数
@@ -31,22 +24,22 @@ def get_goal_coords(ball_coords,dog_coords,gate_coords,dist):
         right = -1
     else:
         right = 1
-    if gate_coords[0]-1<ball_coords[0]<gate_coords[0]+1: #球在门框范围内
+    if gate_coords[0]-1.1<ball_coords[0]<gate_coords[0]+1.1: #球在门框范围内
         shoot_mode=0
         goal_coords[0]=ball_coords[0]-0.1
         if C.COLOR == 0: #红狗
             goal_coords[1]=ball_coords[1]-dist
-        else:
+        else:#黑狗
             goal_coords[1]=ball_coords[1]+dist
     else: #球在门框外
         shoot_mode = 1
-        if (goal_coords[0]<gate_coords[0]-1.8) or (goal_coords[0]>gate_coords[0]+1.8) or (goal_coords[1]>8.0) or (goal_coords[1]<2.3):
+        if (goal_coords[0]<gate_coords[0]-1.0) or (goal_coords[0]>gate_coords[0]+1.0) or (goal_coords[1]>8.0) or (goal_coords[1]<2.0):
             #如果位置不合法，到球正后方踢球
             shoot_mode = 0
             goal_coords[0]=ball_coords[0]-0.1
             if C.COLOR == 0: #红狗
                 goal_coords[1]=ball_coords[1]-dist
-            else:
+            else:#黑狗
                 goal_coords[1]=ball_coords[1]+dist
     return goal_coords,right,shoot_mode
 
