@@ -8,7 +8,7 @@
 '''
 class C():
     GATE = [-0.2,8.8]               # (x,y)
-    DIST = 1.0                     # get_goal_coords() distance to the ball (m)
+    DIST = 1.5                     # get_goal_coords() distance to the ball (m)
     ERROR = 0.3                     # error for location.in_place (m)
     NAME = 'az'                    # dog_name
     COLOR = 0                       # 0 FOR RED, 1 FOR BLACK, 2 FOR WHITE
@@ -27,3 +27,6 @@ class C():
     INFO_DELAY = 0.3                # threshold for determing a data is to dated to use.
     AVOID_DIST = 0.5
     TRANSLATE_TIMEOUT = 5.
+    DIST_TO_TARGET_THRESHOLD = 4.
+    TRANSLATE_SPEED = 0.2
+    
