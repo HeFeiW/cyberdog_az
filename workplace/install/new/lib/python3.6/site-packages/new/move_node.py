@@ -38,7 +38,7 @@ class Move(Node):
         self.DIST = C.DIST
         self.location = location
         self.rgb_node = RGBCamSuber("rgb_cam_suber")
-    def goto(self,target,accurate_mode = False, frequency = C.FREQUENCY):    # mode == 1， accurate mode, get data while going; mode == 0, fast mode, dont get data.
+    def goto(self,target,accurate_mode = True, frequency = C.FREQUENCY):    # mode == 1， accurate mode, get data while going; mode == 0, fast mode, dont get data.
         '''
         goto(self,target:target_coords)
         go to point [target] at max speed.
@@ -57,7 +57,7 @@ class Move(Node):
                     #   如果发现在目标点已经不符合射门要求（即球移动了，使得原先的target失效），此时判定为这一次goto失效。
                     print(f'==== goto:target {target} no longer effective ====')
                     return False
-                # mid_target = self.location.MayCrash(target)
+                mid_target = self.location.MayCrash(target)
                 dist_to_target = dist(self.location.my_loc(), target)
                 if dist_to_target > C.DIST_TO_TARGET_THRESHOLD:
                     ratio = 1.0
@@ -69,18 +69,13 @@ class Move(Node):
                 if dist_to_target > C.DIST_TO_TARGET_THRESHOLD:
                     ratio = 1.0
                 else:
-                    ratio = 0.2+0.8 * dist_to_target/C.DIST_TO_TARGET_THRESHOLD #decay speed with distance
-                # if dist_to_target > C.DIST_TO_TARGET_THRESHOLD: 封印一下指数减速
-                #     ratio = 1.0
-                # else:
-                #     a = 0.5 / (1 - math.exp(-C.DIST_TO_TARGET_THRESHOLD))
-                #     b = 0.5 + a
-                #     ratio = b - a * math.exp(-dist_to_target)
+                    a = 0.5 / (1 - math.exp(-C.DIST_TO_TARGET_THRESHOLD))
+                    b = 0.5 + a
+                    ratio = b - a * math.exp(-dist_to_target)
                 mid_target = target
             v =self.max_vel(mid_target,self.location.my_loc(),ratio)
             vel = [v[0],v[1],.0]
             self.go(vel)
-            print(f'--- goto():targeting {target}')
             time.sleep(0.1)
             if mid_target is not target:
                 print(f'--- goto():mid_target {mid_target}')
@@ -242,17 +237,6 @@ class Move(Node):
         left = self.location.isLeft()
         shoot_dist = self.location.dist(self.location.ball,self.location.my_loc())
         print(f"ball is on the {left}")
-        #尽量减少冲进禁区的可能性
-        if C.COLOR == 0:#red
-            final_y=self.location.my_loc()[1]+redundancy+shoot_dist
-            while redundancy >= 0.1 and final_y>C.GATE[1]:#如果抵达的目标在禁区，减少redundancy,最少为0.1
-                redundancy -= 0.1
-                final_y=self.location.my_loc()[1]+redundancy+shoot_dist
-        if C.COLOR == 1:#black
-            final_y=self.location.my_loc()[1]-redundancy-shoot_dist
-            while redundancy >= 0.1 and final_y<C.GATE[1]:#如果抵达的目标在禁区，减少redundancy,最少为0.1
-                redundancy -= 0.1
-                final_y=self.location.my_loc()[1]-redundancy-shoot_dist
         if mode == 0:
             self.translate_aim_ball(left)
             print(f"ball is on the {left}")

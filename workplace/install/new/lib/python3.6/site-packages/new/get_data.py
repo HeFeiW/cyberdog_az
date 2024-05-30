@@ -98,7 +98,7 @@ class Location():
         elif loc[1] > C.MARGIN[0][1]:
             # y too big
             return False
-        elif loc[1] < C.MARGIN[1][1]:
+        elif loc[0] < C.MARGIN[1][1]:
             # y too small
             return False
         return True
@@ -138,17 +138,7 @@ class Location():
         red_delay = current - self.red_dog_loc_rec[4][1]
         black_delay = current - self.black_dog_loc_rec[4][1]
         return ball_delay < C.INFO_DELAY and red_delay < C.INFO_DELAY and black_delay < C.INFO_DELAY
-    def isBallBehind(self):
-        if self.color == 0:#red
-            if (self.red_dog[1] >self.ball[1]) and (abs(self.red_dog[0]-self.ball[0])<0.5):
-                return True
-            else:
-                return False
-        if self.color == 1:#black
-            if (self.black_dog[1] <self.ball[1]) and (abs(self.black_dog[0]-self.ball[0])<0.5):
-                return True
-            else:
-                return False
+    
     def blockingWay(self,line,oppo_loc):
         print(line.slope)
         if C.SAFE_DIST * math.sqrt(line.slope * line.slope +1) < abs(line.slope * oppo_loc[0] - oppo_loc[1] + line.interception):
