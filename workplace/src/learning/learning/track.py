@@ -11,7 +11,7 @@ class rgb_cam_suber(Node):
         super().__init__(name)
         self.bridge = CvBridge()
         self.declare_parameter("dog_name", "az")
-        self.sub = self.create_subscription(Image, '/image_left', self.sub_callback, 10)
+        self.sub = self.create_subscription(Image, '/image_rgb', self.sub_callback, 10)
         self.frame_count = 0
 
     def sub_callback(self, msg: Image):

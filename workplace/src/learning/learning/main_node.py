@@ -4,7 +4,7 @@
 >   main node:
         always spin this node and do not create or destroy other nodes repeatedly
 '''
-
+from .draw import Record
 import rclpy
 from .rgb_cam_suber import RGBCamSuber
 from .move_node import Move
@@ -21,12 +21,15 @@ def main(args=None):
     rclpy.init(args=args)
     # rgb_cam_suber = RGBCamSuber('rgb_s')
     # rclpy.spin_once(rgb_cam_suber)
+    # record = Record()
     location = Location()
     print(f'where are we?')
     move = Move(location)
     try:
         # TODO 主循环，实际使用时可以改成 while True循环
-        for i in range(5):
+        while True:
+            i = 0
+            i += 1
             print(f'-----in loop {i}-----')
             while time.time()-location.my_loc_rec()[4][0] > 1:
                 #   确保当前自身位置信息是更新过的（上次时间戳距今小于 1s）
@@ -43,11 +46,15 @@ def main(args=None):
                 continue
             print(f'Can Shoot!')
             move.shoot(shoot_mode)
+            # move.shoot2()
             print('successfully shoot!')
             print('sleeping...')
             if location.Scored():
                 move.goto(C.START_POINT)
             print("Let's do it again!")
+            # record.add_loc(location)
+            # record.add_my_vel(move)
+            # record.draw(location)
         rclpy.shutdown()
     except Exception as e:
         print(e)
